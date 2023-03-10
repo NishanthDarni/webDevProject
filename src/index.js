@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Login from './components/Login'
+import Nav from './components/Nav'
+import SignUp from './components/SignUp'
 import reportWebVitals from './reportWebVitals';
-
+import Sell from './components/Sell'
+import {Routes,Route, BrowserRouter,Link} from 'react-router-dom'
 const root = ReactDOM.createRoot(document.getElementById('root'));
+//if login store login details, if logout null those values 
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+      <Route path="/login" element={<Login />}/>
+      <Route path="/" element={<Nav/>}/>
+      <Route path="/signUp" element={<SignUp/>}/>
+      <Route path="/sell" element={<Sell/>}/>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
