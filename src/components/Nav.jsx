@@ -6,6 +6,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import SearchIcon from '@mui/icons-material/Search';
 function Nav()
 {   document.body.style.backgroundColor="aliceblue"
+    
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-primary">
         <div className="container-fluid">
@@ -27,14 +28,14 @@ function Nav()
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
               <button className="btn bg-dark btn-search" type="submit"><SearchIcon/></button>
             </form>
-            <ul className="navbar-nav">
+            {(window.localStorage.getItem('userID')==null)?(<ul className="navbar-nav">
               <li className="nav-item nav-item-margin">
                 <Link to="/login" className='link forFontStyle'>LOGIN</Link>
               </li>
               <li className="nav-item nav-item-margin">
                 <Link to="/signUp" className='link forFontStyle'>SIGN UP</Link>
               </li>
-            </ul>
+            </ul>):<li>{window.localStorage.getItem('userID')}</li>}
           </div>
         </div>
       </nav>

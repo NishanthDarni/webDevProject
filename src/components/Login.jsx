@@ -15,11 +15,16 @@ function Login()
         const fdata=new FormData()
         fdata.append('email',email)
         fdata.append('password',password)
-        axios.post(uri,fdata).then(response=>{alert(response.data)}).catch(error=>alert(error))
-        
+        const res=await axios.post(uri,fdata)
+        alert(res.data)
+        if(res.data=='Failed')
+        {
+            console.log('Failed')
+        }else{
+           window.localStorage.setItem('userID',res.data)
+        }
     }
     return (
-
         <div className="login">
             <h1 className="loginText">Login</h1>
             <form>
