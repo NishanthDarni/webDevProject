@@ -1,4 +1,5 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link} from "react-router-dom";
+import {useNavigate} from 'react-router-dom' 
 import '../css/login.css'
 import {useState,useEffect} from 'react'
 import axios from 'axios'
@@ -9,6 +10,13 @@ function Login()
 {   document.body.style.backgroundColor="#3c00a0"
     const [email,setEmail]=useState()
     const [password,setPassword]=useState()
+    const navigate=useNavigate()
+    useEffect(()=>{{
+        if(window.sessionStorage.getItem('userID')!=null)
+        {
+            navigate("/")
+        }
+    }},[])
     const handleSubmit=async()=>
     {
         const uri='http://localhost:80/php-react/login.php'
@@ -22,7 +30,6 @@ function Login()
         }else{
             window.sessionStorage.setItem('userID',resp.data)
         }
-        
     }
     return (
         <>
