@@ -4,7 +4,7 @@ import {useState,useEffect} from 'react'
 import axios from 'axios'
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 function Login()
 {   document.body.style.backgroundColor="#3c00a0"
     const [email,setEmail]=useState()
@@ -15,11 +15,18 @@ function Login()
         const fdata=new FormData()
         fdata.append('email',email)
         fdata.append('password',password)
-        axios.post(uri,fdata).then(response=>{alert(response.data)}).catch(error=>alert(error))
+        const resp=await axios.post(uri,fdata)
+        if(resp.data=='Failed')
+        {
+         console.log('failed')   
+        }else{
+            window.sessionStorage.setItem('userID',resp.data)
+        }
         
     }
     return (
-
+        <>
+        <div className="home"><Link to="../" className="home_link"> <ArrowBackIcon/>Home</Link></div>
         <div className="login">
             <h1 className="loginText">Login</h1>
             <form>
@@ -41,6 +48,7 @@ function Login()
                 </p>
             </form>
         </div>
+        </>
     )
 }
 

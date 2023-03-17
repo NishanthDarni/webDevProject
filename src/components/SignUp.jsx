@@ -8,6 +8,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 function SignUp() {
     document.body.style.backgroundColor="#3c00a0"
     const [name,setName]=useState('')
@@ -26,6 +27,8 @@ function SignUp() {
         axios.post(uri,fdata).then(response=>alert(response.data)).catch(error=>alert(error))
     }
   return (
+    <>
+    <div className="home"><Link to="../" className="home_link"> <ArrowBackIcon/>Home</Link></div>
     <div className="form-box">
             <h1>Sign Up</h1>
             <form>
@@ -57,6 +60,7 @@ function SignUp() {
                 <Link to='../login' style={{textDecoration:'none'}}>Login</Link>
             </p>
         </div>
+        </>
   )
 }
 

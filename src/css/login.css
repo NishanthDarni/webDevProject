@@ -60,3 +60,16 @@
     font-size:large;
     border-radius:5px;
 }
+
+.home{
+    padding:20px;
+}
+
+.home_link{
+    text-decoration: none;
+    color:white;
+}
+
+.home_link:hover{
+    color:black;
+}

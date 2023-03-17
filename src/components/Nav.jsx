@@ -4,8 +4,25 @@ import '../css/link.css'
 import '../css/nav.css'
 import LoginIcon from '@mui/icons-material/Login';
 import SearchIcon from '@mui/icons-material/Search';
+import axios from 'axios'
+import {useEffect,useState} from 'react'
 function Nav()
-{   document.body.style.backgroundColor="aliceblue"
+{   document.body.style.backgroundColor="white"
+    const [name,setName]=useState();
+    useEffect(()=>{
+    const func=async()=>{if(window.localStorage.getItem('userID'))
+    {
+    const uri='http://localhost:80/php-react/getUserName.php'
+    const fdata=new FormData()
+    fdata.append('userID',window.sessionStorage.getItem('userID'))
+    const temp=await axios.post(uri,fdata)
+    if(temp.data!='error')
+    {
+      setName(temp.data);
+    }
+    }}
+    func()
+    },[])
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-primary">
         <div className="container-fluid">
@@ -27,14 +44,16 @@ function Nav()
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
               <button className="btn bg-dark btn-search" type="submit"><SearchIcon/></button>
             </form>
-            <ul className="navbar-nav">
+            {(window.sessionStorage.getItem('userID')==null)?(<ul className="navbar-nav">
               <li className="nav-item nav-item-margin">
                 <Link to="/login" className='link forFontStyle'>LOGIN</Link>
               </li>
               <li className="nav-item nav-item-margin">
                 <Link to="/signUp" className='link forFontStyle'>SIGN UP</Link>
               </li>
-            </ul>
+            </ul>):<ul className="navbar-nav"><li className="nav-item nav-item-margin">
+                {name}
+              </li></ul>}
           </div>
         </div>
       </nav>
