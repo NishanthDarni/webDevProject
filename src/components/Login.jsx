@@ -15,18 +15,6 @@ function Login()
         const fdata=new FormData()
         fdata.append('email',email)
         fdata.append('password',password)
-<<<<<<< HEAD
-        const res=await axios.post(uri,fdata)
-        alert(res.data)
-        if(res.data=='Failed')
-        {
-            console.log('Failed')
-        }else{
-           window.localStorage.setItem('userID',res.data)
-        }
-    }
-    return (
-=======
         const resp=await axios.post(uri,fdata)
         if(resp.data=='Failed')
         {
@@ -39,7 +27,6 @@ function Login()
     return (
         <>
         <div className="home"><Link to="../" className="home_link"> <ArrowBackIcon/>Home</Link></div>
->>>>>>> work
         <div className="login">
             <h1 className="loginText">Login</h1>
             <form>
