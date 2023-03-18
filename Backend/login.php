@@ -2,8 +2,13 @@
     header("Access-control-Allow-Origin: *");
 	header("Access-Control-Allow-Headers: *");
     header("Access-Control-Allow-Methods: *");
+	if ($_SERVER['REQUEST_METHOD'] === 'POST')
+	{
     $email=$_POST['email'];
     $password=$_POST['password'];
+	}else{
+		echo "Failed";
+	}
     //database connecion
     $conn = new mysqli('localhost','root','','registration');
 	if($conn->connect_error){
