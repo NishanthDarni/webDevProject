@@ -7,6 +7,7 @@ import SignUp from './components/SignUp'
 import reportWebVitals from './reportWebVitals';
 import Sell from './components/Sell'
 import User from './components/User'
+import Search from './components/Search'
 import {Routes,Route, BrowserRouter,Link} from 'react-router-dom'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //if login store login details, if logout null those values 
@@ -19,6 +20,7 @@ root.render(
       <Route path="/signUp" element={<SignUp/>}/>
       <Route path="/sell" element={<Sell/>}/>
       <Route path="/user" element={<User/>}/>
+      <Route path='/search' element={<Search/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -2,14 +2,16 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import '../css/link.css'
 import '../css/nav.css'
+import { useNavigate } from "react-router-dom";
 import LoginIcon from '@mui/icons-material/Login';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios'
 import {useEffect,useState} from 'react'
 function Nav()
-{   document.body.style.backgroundColor="white"
+{
+    const navigate = useNavigate();
+    document.body.style.backgroundColor="white"
     const [name,setName]=useState();
-    useEffect(()=>{
     const func=async()=>{if(window.localStorage.getItem('userID'))
     {
     const uri='http://localhost:80/php-react/getUserName.php'
@@ -21,8 +23,21 @@ function Nav()
       setName(temp.data);
     }
     }}
+    const search=(e)=>{
+      e.preventDefault()
+      const s=document.querySelector('#search_item')
+      if(s.value.length==0)
+      {
+        alert('You didnot searched anything')
+      }else{
+        navigate('/search',{
+          state:{
+            'value':s.value
+          }
+        })
+      }
+    }
     func()
-    },[])
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-primary">
         <div className="container-fluid">
@@ -41,8 +56,8 @@ function Nav()
               </li> 
             </ul>
             <form className="d-flex" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-              <button className="btn bg-dark btn-search" type="submit"><SearchIcon/></button>
+              <input className="form-control me-2" id="search_item" type="search" placeholder="Search" aria-label="Search"/>
+              <button className="btn bg-dark btn-search" type="submit" onClick={search}><SearchIcon/></button>
             </form>
             {(window.sessionStorage.getItem('userID')==null)?(<ul className="navbar-nav">
               <li className="nav-item nav-item-margin">

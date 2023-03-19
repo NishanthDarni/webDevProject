@@ -9,14 +9,17 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 function SignUp() {
     document.body.style.backgroundColor="#3c00a0"
     const [name,setName]=useState('')
     const [mobile,setMobile]=useState('')
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
-    const handleSubmit=()=>
+    const handleSubmit=async(event)=>
     {
+        //handle all cases
+        event.preventDefault()
         console.log('Hello world')
         const uri='http://localhost:80/php-react/connect.php'
         let fdata=new FormData()
@@ -24,7 +27,18 @@ function SignUp() {
         fdata.append('mobile',mobile)
         fdata.append('email',email)
         fdata.append('password',password)
-        axios.post(uri,fdata).then(response=>alert(response.data)).catch(error=>alert(error))
+        const resp=await axios.post(uri,fdata).catch(error=>alert(error))
+        if(resp.data=="Fail")
+        {
+            document.querySelector('.status').innerHTML="*Email already registered"
+        }else if(resp.data=="Success")
+        {
+            document.querySelector('.status').innerHTML="*Succesfully registered"
+            setName('')
+            setEmail('')
+            setMobile('')
+            setPassword('')
+        }
     }
   return (
     <>
@@ -55,6 +69,7 @@ function SignUp() {
                 <button id="submit" type='submit' onClick={handleSubmit}>Submit</button>
                 </div>
             </form>
+            <p className='status'></p>
             <p>
                 Already have an account?
                 <Link to='../login' style={{textDecoration:'none'}}>Login</Link>

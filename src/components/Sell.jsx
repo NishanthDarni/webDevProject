@@ -200,8 +200,8 @@ function Sell()
             <div className="sell_container">
             <div className="legend3">Images</div>
                 <div className="lap_image flex-item">
-                    <h3>upload images*</h3>
-                    <input type="file"  name="image" className='sell_input' required onChange={(e)=>setImage(e.target.files[0])}/><br/><br/>
+                    <input type="file"  name="image" style={{display:'none'}} id="selectedFile" required onChange={(e)=>setImage(e.target.files[0])}/>
+                    <input type="button" value="+" onClick={()=>{document.getElementById('selectedFile').click();}} style={{padding:'10px',fontSize:'xx-large',paddingLeft:'20px',paddingRight:'20px',backgroundColor:'white'}} />
                 </div>
                 <div className="flex-item">
                     <input type="submit" class='sell_prev' value="prev" name="prev" onClick={prev}/>

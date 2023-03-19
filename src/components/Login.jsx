@@ -11,24 +11,24 @@ function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
-  // useEffect(()=>{{
-  //     if(window.sessionStorage.getItem('userID')!=null)
-  //     {
-  //         navigate("/")
-  //     }
-  // }},[])
-  const handleSubmit = async () => {
+  const handleSubmit = async (event
+    ) => {
+    event.preventDefault();
     const uri = "http://localhost:80/php-react/login.php";
     const fdata = new FormData();
     fdata.append("email", email);
     fdata.append("password", password);
     console.log(fdata);
     const resp = await axios.post(uri, fdata);
-    alert(resp.data);
-    if (resp.data == "Failed") {
-      console.log("failed");
-    } else {
+    //returns Email if email doesnt exist and Password if password didnt exist
+    if (resp.data == "Email") {
+      document.querySelector('.status').innerHTML="*No user found with the email given"
+    } else if(resp.data=="Password"){
+      document.querySelector(".status").innerHTML="*Incorrect password"
+    }
+    else {
       window.sessionStorage.setItem("userID", resp.data);
+      navigate('/');
     }
   };
   return (
@@ -70,6 +70,7 @@ function Login() {
           <button className="btn" onClick={handleSubmit}>
             Login
           </button>
+          <p className="status"></p>
           <a href="#" className="frgt">
             <p>Forgot password?</p>
           </a>

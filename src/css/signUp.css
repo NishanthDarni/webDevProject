@@ -79,3 +79,8 @@ form p a {
 .input-group {
     height: auto;
 }
+
+.status{
+    color:red;
+    font-size:medium;
+}
