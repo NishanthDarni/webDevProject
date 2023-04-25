@@ -9,13 +9,14 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
-function SignUp() {
-    document.body.style.backgroundColor="#3c00a0"
+import Nav from './Nav'
+import dog2 from '../css/images/dog2.jpg'
+function SignUp(){
     const [name,setName]=useState('')
     const [mobile,setMobile]=useState('')
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
+    const [confirmpassword,setConfirmPassword]=useState('')
     const handleSubmit=async(event)=>
     {
         //handle all cases
@@ -38,12 +39,15 @@ function SignUp() {
             setEmail('')
             setMobile('')
             setPassword('')
+            setConfirmPassword('')
         }
     }
   return (
     <>
-    <div className="home"><Link to="../" className="home_link"> <ArrowBackIcon/>Home</Link></div>
-    <div className="form-box">
+    <Nav/>
+    {/* <div className="home"><Link to="../" className="home_link"> <ArrowBackIcon/>Home</Link></div> */}
+    <div className="form_container">
+        <div className="form-box">
             <h1>Sign Up</h1>
             <form>
                 <div className="input-group">
@@ -63,7 +67,11 @@ function SignUp() {
                         <LockIcon/>
                         <input type="password" className='input' name="pswd" id="pswrd" placeholder="Password" maxLength="20" value={password} onChange={(e)=>setPassword(e.target.value)}/>
                     </div>
-                    <p>Forgot Password? <a href="#">Click Here!</a></p>
+                    <div className="input-field">
+                        <LockIcon/>
+                        <input type="password" className='input' name="pswd" id="pswrd" placeholder="Confirm Password" maxLength="20" value={confirmpassword} onChange={(e)=>setConfirmPassword(e.target.value)}/>
+                    </div>
+                    <p><span style={{'color':'white'}}>Forgot Password?</span> <a href="#">Click Here!</a></p>
                 </div>
                 <div className="btn-field">
                 <button id="submit" type='submit' onClick={handleSubmit}>Submit</button>
@@ -71,10 +79,11 @@ function SignUp() {
             </form>
             <p className='status'></p>
             <p>
-                Already have an account?
+            <span style={{'color':'white'}}>Already have an account?</span>
                 <Link to='../login' style={{textDecoration:'none'}}>Login</Link>
             </p>
         </div>
+    </div>
         </>
   )
 }

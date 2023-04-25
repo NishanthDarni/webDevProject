@@ -24,3 +24,12 @@
     font-weight: bold;
     font-size:x-large;
 }
+
+.remove_button{
+    width:100%;
+    padding:8px;
+    margin:5px;
+    background-color:black;
+    color:white;
+    border-radius:5px;
+}

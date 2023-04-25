@@ -12,7 +12,7 @@ function Nav()
     const navigate = useNavigate();
     document.body.style.backgroundColor="white"
     const [name,setName]=useState();
-    const func=async()=>{if(window.localStorage.getItem('userID'))
+    const func=async()=>{if(window.sessionStorage.getItem('userID'))
     {
     const uri='http://localhost:80/php-react/getUserName.php'
     const fdata=new FormData()
@@ -30,6 +30,7 @@ function Nav()
       {
         alert('You didnot searched anything')
       }else{
+        alert(s.value)
         navigate('/search',{
           state:{
             'value':s.value
@@ -39,39 +40,51 @@ function Nav()
     }
     func()
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-primary">
-        <div className="container-fluid">
-          <a className="navbar-brand forFontStyle" href="#">OLX</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon "></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav  me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link forFontStyle" aria-current="page" href="#">Home</a>
-              </li>
-
-              <li className="nav-item">
+      <nav class="navbar navbar-inverse bs-dark p-5">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">swapLap</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#">Homepage <span class="sr-only">(current)</span></a></li>
+          <li className="nav-item" id='nav_sell'>
                 <Link to='/sell' className="nav-link">SELL</Link>
-              </li> 
-            </ul>
-            <form className="d-flex" role="search">
-              <input className="form-control me-2" id="search_item" type="search" placeholder="Search" aria-label="Search"/>
-              <button className="btn bg-dark btn-search" type="submit" onClick={search}><SearchIcon/></button>
-            </form>
-            {(window.sessionStorage.getItem('userID')==null)?(<ul className="navbar-nav">
+          </li> 
+        </ul>
+        <form class="navbar-form navbar-left form-horizontal" role="search">
+            <div class="input-group" style={{'display':'flex'}}>
+               <input type="text" id="search_item" class="search-box" placeholder="Search"/>
+               <button type="submit" class="btn" onClick={search}><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
+        {(window.sessionStorage.getItem('userID')==null)?(<ul className="nav navbar-nav navbar-right">
               <li className="nav-item nav-item-margin">
                 <Link to="/login" className='link forFontStyle'>LOGIN</Link>
               </li>
               <li className="nav-item nav-item-margin">
                 <Link to="/signUp" className='link forFontStyle'>SIGN UP</Link>
               </li>
-            </ul>):<ul className="navbar-nav"><li className="nav-item nav-item-margin">
-                {name}
-              </li></ul>}
-          </div>
-        </div>
-      </nav>
+            </ul>):<ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            {name}
+            <img src="http://placehold.it/150x150" class="img-circle" alt="Profile Image" />
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li><Link to="/MyProducts">MyProducts</Link></li>
+              {/* <li role="separator" class="divider"></li> */}
+            </ul>
+          </li>
+        </ul>}
+      </div>
+  </nav>
     )
 }
 

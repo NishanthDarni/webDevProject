@@ -2,18 +2,19 @@ import Nav from "./Nav";
 import Product from "./Product";
 import "../css/home.css";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {Link} from 'react-router-dom'
 import axios from "axios";
 function Home() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const execute = async () => {
       const uri = "http://localhost:80/php-react/getProduct.php";
-      const resp = await fetch(uri);
-      if (!resp.ok) {
-        throw new Error();
-      }
-      const res = await resp.json();
-      setData(res);
+      const fdata=new FormData()
+      fdata.append('userID',window.sessionStorage.getItem('userID'))
+      const resp = await axios.post(uri,fdata,{validateStatus: () => true});
+      setData(resp.data);
     };
     execute();
   }, []);
@@ -21,15 +22,26 @@ function Home() {
     <>
       <Nav />
       <div className="suggestion">
-      {data.slice(0,11).map((e) => {
-        {
-          const obj = JSON.parse(e);
-          return (
-            
-              <Product price={obj.price} lap_name={obj.lap_name} feature={obj.feature} img_src={obj.img_src} description={obj.description}/>
-          );
-        }
-      })}
+        {data!="0 results"?data.slice(0, 11).map((e) => {
+          {
+            const obj = JSON.parse(e);
+            return (
+              <Product
+                price={obj.price}
+                lap_name={obj.lap_name}
+                feature={obj.feature}
+                img_src1={obj.img_src1}
+                img_src2={obj.img_src2}
+                img_src3={obj.img_src3}
+                img_src4={obj.img_src4}
+                img_src5={obj.img_src5}
+                img_src6={obj.img_src6}
+                description={obj.description}
+                productID={obj.productID}
+              />
+            );
+          }
+        }):"No data found"}
       </div>
     </>
   );

@@ -11,12 +11,14 @@ function Search()
         const post=async()=>{
             const uri = "http://localhost:80/php-react/search.php";
             const fdata=new FormData()
+            fdata.append('userID',window.sessionStorage.getItem('userID'))
             fdata.append('value',state.state.value)
             const resp=await axios.post(uri,fdata)
             setData(resp.data);
+            alert(resp.data)
         }
         post()
-    })
+    },[state])
     return (
         <>
           <Nav/>
@@ -25,8 +27,12 @@ function Search()
             {
               const obj = JSON.parse(e);
               return (
-                
-                  <Product price={obj.price} lap_name={obj.lap_name} feature={obj.feature} img_src={obj.img_src} description={obj.description}/>
+                  <Product productID={obj.productID} price={obj.price} lap_name={obj.lap_name} feature={obj.feature} img_src1={obj.img_src1}
+                  img_src2={obj.img_src2}
+                  img_src3={obj.img_src3}
+                  img_src4={obj.img_src4}
+                  img_src5={obj.img_src5}
+                  img_src6={obj.img_src6} description={obj.description}/>
               );
             }
           })}

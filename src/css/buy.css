@@ -1,0 +1,53 @@
+.buy_image{
+    width:100%;
+    text-align: center;
+}
+.buy_image_1{
+    max-width:60%;
+}
+.buy_details{
+    text-align: center;
+}
+.buy_text{
+    font-size:xx-large;
+}
+.buy_button{
+    border-radius:5px;
+    border:0px;
+    background-color:orange;
+    color:white;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top: 10px;
+    padding-bottom:10px;
+    font-size:x-large;
+}
+.buy_price{
+    color:blue;
+    font-weight: bold;
+}
+
+.buy_cart{
+    margin-left:10px;
+    border-radius:5px;
+    border:0px;
+    background-color:rgb(236, 236, 11);
+    color:white;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top: 10px;
+    padding-bottom:10px;
+    font-size:x-large;
+}
+
+.d-block{
+    margin-left:auto;
+    margin-right:auto;
+    height:20px;
+}
+
+.seller_details{
+    text-align:center;
+    background-color: black;
+    color:white;
+}

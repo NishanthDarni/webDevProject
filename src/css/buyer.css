@@ -1,0 +1,31 @@
+.buyer{
+    display:flex;
+    width:fit-content;
+    justify-content:center;
+    font-weight:bold;
+    padding:20px;
+}
+.buyer_container{
+    background-color:white;
+    margin:10px;
+    border-radius:5px;
+    border:2px solid grey;
+}
+.buyer_details{
+    margin-left:20px;
+}
+
+.buyer_btn{
+    width:100%;
+    border-radius: 5px;
+    border:0px;
+    padding:5px;
+    background-color:green;
+    color:white;
+    font-weight:bold;
+}
+
+.buyer_btn:hover{
+    color:green;
+    background-color: white;
+}

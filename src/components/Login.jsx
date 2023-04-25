@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../css/login.css";
+import Nav from './Nav'
 import { useState, useEffect } from "react";
 import axios from "axios";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import dog from '../css/images/dog.jpg'
 function Login() {
-  document.body.style.backgroundColor = "#3c00a0";
+  // document.body.style.backgroundColor = "#3c00a0";
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
@@ -33,14 +35,17 @@ function Login() {
   };
   return (
     <>
-      <div className="home">
+      {/* <div className="home">
         <Link to="../" className="home_link">
           {" "}
           <ArrowBackIcon />
           Home
         </Link>
-      </div>
+      </div> */}
+      <Nav/>
+      <div className="login_container">
       <div className="login">
+        <h1 style={{'color':'yellow'}}>Welcome back 👋</h1>
         <h1 className="loginText">Login</h1>
         <form>
           <div className="box">
@@ -74,11 +79,15 @@ function Login() {
           <a href="#" className="frgt">
             <p>Forgot password?</p>
           </a>
-          <p>
+          <p id="account">
             Don't have an account?
-            <Link to="../signUp">SignUp</Link>
+            <Link to="../signUp" className="signUp">SignUp</Link>
           </p>
         </form>
+      </div>
+      <div>
+       <img src={dog} style={{'height':'510px','border-radius':'5px'}} alt="" />
+      </div>
       </div>
     </>
   );
